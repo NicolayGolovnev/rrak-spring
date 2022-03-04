@@ -1,5 +1,6 @@
 package ru.adept.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class PreservesAndPlant {
 
     @ManyToOne
     @JoinColumn(name = "id_plant", nullable = false)
+    @JsonIgnore
     Plant plant;
 
     @ManyToOne
