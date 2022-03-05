@@ -28,7 +28,7 @@
               <a class="nav-link active" href="#">Главная</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index-admin.html">Редактирование списка растений</a>
+              <a class="nav-link" href="/index-admin">Редактирование списка растений</a>
             </li>
           </ul>
         </div>
@@ -38,16 +38,16 @@
         <div class="row justify-content-around">
             <th:block th:each="plant, state: ${plants}">
                 <div class="card col-xs-12 col-sm-5 col-lg-3 m-1 p-0">
-                    <img th:src="${'img/rareherb' + (state.count % 5) + '.jpg'}" class="card-img-top w-100" alt="Rare Herb 1">
+                    <img th:src="${'img/rareherb' + (state.count % 5) + '.jpg'}" class="card-img-top w-100" th:alt="${'Rare herb' + (state.count % 5)}">
                     <div class="card-body h-auto">
-                        <h5 th:utext="${plant.name}" class="card-title">Гроздовник виргинский</h5>
+                        <h5 th:utext="${plant.name}" class="card-title">Card title</h5>
                         <p th:utext="${plant.description}" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item px-3 py-1">Исследователи: <th:block th:utext="${plant.researchers}"/></li>
                         <li class="list-group-item px-3 py-1">Статус: <th:block th:utext="${plant.status}"/></li>
                     </ul>
-                    <a th:href="@{/herb/{id}(id=${plant.getId()})}"><button type="button" class="btn btn-primary my-2 mx-4 p-2">Подробнее</button></a>
+                    <button th:onclick="'location.href=\'/herb/' + ${plant.getId()} + '\''" type="button" class="btn btn-primary my-2 mx-4 p-2">Подробнее</button>
                 </div>
             </th:block>
         </div>
