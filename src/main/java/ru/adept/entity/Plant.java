@@ -31,4 +31,12 @@ public class Plant {
 
     @OneToMany(mappedBy = "plant", cascade = CascadeType.ALL, orphanRemoval = true)
     List<PreservesAndPlant> preserves;
+
+    public Boolean consistsInPreserves(Preserve preserve) {
+        for (PreservesAndPlant elem : this.preserves) {
+            if (elem.preserve.equals(preserve))
+                return true;
+        }
+        return false;
+    }
 }

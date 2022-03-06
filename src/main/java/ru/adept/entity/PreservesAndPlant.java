@@ -26,5 +26,4 @@ public class PreservesAndPlant {
     @ManyToOne
     @JoinColumn(name = "id_preserve", nullable = false)
     Preserve preserve;
-
 }
