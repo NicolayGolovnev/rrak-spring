@@ -1,8 +1,8 @@
 package ru.adept.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,6 +10,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "plant")
 public class Plant {
@@ -31,12 +33,4 @@ public class Plant {
 
     @OneToMany(mappedBy = "plant", cascade = CascadeType.ALL, orphanRemoval = true)
     List<PreservesAndPlant> preserves;
-
-    public Boolean consistsInPreserves(Preserve preserve) {
-        for (PreservesAndPlant elem : this.preserves) {
-            if (elem.preserve.equals(preserve))
-                return true;
-        }
-        return false;
-    }
 }

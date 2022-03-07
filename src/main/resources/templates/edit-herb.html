@@ -75,10 +75,10 @@
         <div class="form-group row">
             <div class="col-sm-2">Заповедники</div>
             <div class="col-sm-4">
-                <th:block th:each="preserve, state: ${preserves}">
+                <th:block th:each="preserve, state: ${allPreserves}">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" th:id="${'gridCheck' + state.count}"
-                               th:checked="${plant.consistsInPreserves(preserve)}">
+                        <input class="form-check-input" type="checkbox" th:field="${plant.preserves}" th:value="${preserve.id}"
+                               th:id="${'gridCheck' + state.count}" th:checked="${plant.consistsInPreserves(preserve)}">
                         <label class="form-check-label" th:for="${'gridCheck' + state.count}"
                                th:text="${preserve.name}"></label>
                     </div>
@@ -89,7 +89,7 @@
         <div class="form-group row">
             <div class="col-sm-6">
                 <button type="submit" class="btn btn-primary col-sm-4">Изменить</button>
-                <button type="button" th:href="@{/edit-herb}" class="btn btn-warning col-sm-2">Назад</button>
+                <button type="button" th:onclick="'location.href=\'/index-admin\''" class="btn btn-warning col-sm-2">Назад</button>
             </div>
         </div>
     </form>
