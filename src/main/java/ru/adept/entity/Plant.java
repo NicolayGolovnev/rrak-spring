@@ -33,4 +33,17 @@ public class Plant {
 
     @OneToMany(mappedBy = "plant", cascade = CascadeType.ALL, orphanRemoval = true)
     List<PreservesAndPlant> preserves;
+
+    public String getStringByPreserves() {
+        StringBuilder str = new StringBuilder();
+        if (preserves.isEmpty())
+            str.append("не находится в заповедниках");
+        else {
+            for (int i = 0; i < preserves.size() - 1; i++)
+                str.append(preserves.get(i).preserve.getName()).append(", ");
+            str.append(preserves.get(preserves.size() - 1).preserve.getName());
+        }
+
+        return str.toString();
+    }
 }

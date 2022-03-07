@@ -88,4 +88,37 @@ public class PlantController {
         plantRepository.deleteById(id);
         return "redirect:/index-admin";
     }
+
+    @GetMapping("/add-herb")
+    public String addPlantForm(Model model) {
+        model.addAttribute("plant", new PlantModel());
+        List<Preserve> preserves = preserveRepository.findAll(Sort.by("name"));
+        model.addAttribute("allPreserves", preserves);
+        return "add-herb";
+    }
+
+    @PostMapping("/add-herb")
+    public String addPlant(@ModelAttribute("plant") PlantModel plant) {
+        Plant entityPlant = new Plant();
+        entityPlant.setId(0L);
+        entityPlant.setName(plant.getName());
+        entityPlant.setDescription(plant.getDescription());
+        entityPlant.setResearchers(plant.getResearchers());
+        entityPlant.setStatus(plant.getStatus());
+        entityPlant.setPreserves(new ArrayList<>());
+        for (var elem : plant.getPreserves()) {
+            PreservesAndPlant entity = new PreservesAndPlant();
+            entity.setPlant(entityPlant);
+            entity.setPreserve(preserveRepository.findById(elem.getId()).orElseThrow());
+            entityPlant.getPreserves().add(entity);
+        }
+        plantRepository.save(entityPlant);
+        return "redirect:/";
+    }
+
+    @GetMapping("/herb/{id}")
+    public String viewPlant(@PathVariable Long id, Model model) {
+        model.addAttribute("plant", plantRepository.findById(id).orElseThrow());
+        return "herb";
+    }
 }
