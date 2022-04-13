@@ -15,6 +15,7 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.min.js"
             integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" th:src="@{~/js/ajaxView.js}"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -42,17 +43,18 @@
 <div class="container mt-4">
     <h3 class="text-center">Просмотр редкого растения Алтайского края</h3>
     <div class="card mx-auto p-0">
-        <img th:src="@{~/img/rareherb{id}.jpg(id=${plant.id % 5})}" class="img-fluid d-block mx-auto" th:alt="${'Rare herb' + (plant.id % 5)}">
+        <img th:src="@{~/img/rareherb1.jpg}" class="img-fluid d-block mx-auto" th:alt="${'Rare herb'}">
         <div class="card-body h-auto">
-            <h5 th:utext="${plant.name}" class="card-title text-center">Название растения</h5>
-            <p th:utext="${plant.description}" class="card-text">Описание: Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore velit quos
+            <div hidden id="herbId" th:value="${herbId}"></div>
+            <h5 id="name" class="card-title text-center">Название растения</h5>
+            <p id="description" class="card-text">Описание: Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore velit quos
                 totam quidem consectetur rem harum eveniet laboriosam maiores repudiandae, laudantium voluptate vero
                 nostrum soluta explicabo veniam dolorum! Quibusdam, animi!</p>
         </div>
         <ul class="list-group list-group-flush p-0">
-            <li class="list-group-item px-3 py-1" id="researchers">Исследователи: <th:block th:utext="${plant.researchers}"/></li>
-            <li class="list-group-item px-3 py-1" id="status">Статус: <th:block th:utext="${plant.status}"/></li>
-            <li class="list-group-item px-3 py-1" id="preserves">Находится в заповедниках: <th:block th:utext="${plant.getStringByPreserves()}"/></li>
+            <li class="list-group-item px-3 py-1">Исследователи: <span id="researchers"></span></li>
+            <li class="list-group-item px-3 py-1">Статус: <span id="status"></span></li>
+            <li class="list-group-item px-3 py-1">Находится в заповедниках: <span id="preserves"></span></li>
         </ul>
         <button type="button" th:onclick="'location.href=\'/\''" class="btn btn-primary my-2 mx-4 p-2">Назад</button>
     </div>

@@ -83,12 +83,6 @@ public class PlantController {
         return "redirect:/index-admin";
     }
 
-    @DeleteMapping("/herb/{id}")
-    public String deletePlant(@PathVariable Long id) {
-        plantRepository.deleteById(id);
-        return "redirect:/index-admin";
-    }
-
     @GetMapping("/add-herb")
     public String addPlantForm(Model model) {
         model.addAttribute("plant", new PlantModel());

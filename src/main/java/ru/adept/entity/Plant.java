@@ -46,4 +46,14 @@ public class Plant {
 
         return str.toString();
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\"name\": \"" + name + "\", " +
+                "\"description\": \"" + description + "\", " +
+                "\"researchers\": \"" + researchers + "\", " +
+                "\"status\": \"" + status + "\", " +
+                "\"preserves\": \"" + this.getStringByPreserves() + "\"}";
+    }
 }
