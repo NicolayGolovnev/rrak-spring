@@ -59,8 +59,8 @@
                         <th:block th:utext="${plant.status}"/>
                     </li>
                 </ul>
-<!--                th:onclick="'location.href=\'/herb/' + ${plant.getId()} + '\''" -->
-                <button type="button" th:onclick="'location.href=\'/ajax/loadHerb/' + ${plant.getId()} + '\''"
+<!--                th:onclick="'location.href=\'/ajax/loadHerb/' + ${plant.getId()} + '\''" -->
+                <button type="button" th:onclick="'location.href=\'/herb/' + ${plant.getId()} + '\''"
                         class="btn btn-primary my-2 mx-4 p-2" id="viewHerb">Подробнее
                 </button>
             </div>
